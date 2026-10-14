@@ -80,6 +80,18 @@ Clone this repository, then run these commands from its root on Windows.
 
 The first launch registers the sparse package and relaunches the application with Windows package identity. Grant notification access when prompted. The app then stays in the system tray.
 
+### Build everything with one command
+
+After the one-time certificate setup, build the application and sign its sparse MSIX package together:
+
+```powershell
+.\Build.ps1
+```
+
+The default configuration is **Release**. The executable is written to `src\WinNotiMirror\bin\Release\net8.0-windows10.0.19041.0\WinNotiMirror.exe`, and the package to `packaging\sparse.msix`. For a Debug build, run `.\Build.ps1 -Configuration Debug`.
+
+The script stops if the certificate is missing or either build step fails. It does not create or trust certificates automatically. You can invoke it by its full path from another working directory.
+
 ## Usage
 
 Right-click the **Windows Notification Mirror** tray icon to access:
@@ -113,6 +125,8 @@ docs/screenshots/       Settings and notification preview images
 ```
 
 Build with `dotnet build src/WinNotiMirror/WinNotiMirror.csproj`. Exit the running app before rebuilding the same configuration to avoid executable file locks. Rebuild `packaging/sparse.msix` after changing the manifest or package assets.
+
+Use `Build.ps1` at the repository root to build both the application and package; it reuses `packaging/Build-Package.ps1` for packaging and signing.
 
 There is no committed automated test suite. Before submitting behavior changes, check notification access, banners on every display, stacking and click dismissal, pause/resume, settings persistence, startup toggling, and clean exit. Include mixed-DPI displays when testing positioning.
 
