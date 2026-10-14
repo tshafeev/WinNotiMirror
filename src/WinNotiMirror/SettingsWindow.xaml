@@ -1,0 +1,40 @@
+<Window x:Class="WinNotiMirror.SettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Notification settings" Width="470" SizeToContent="Height"
+        ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <StackPanel Margin="24">
+        <TextBlock Text="Position on each monitor" FontSize="18" FontWeight="SemiBold" Margin="0,0,0,16"/>
+        <TextBlock Text="Horizontal: 0% left, 100% right"/>
+        <DockPanel Margin="0,6,0,16">
+            <TextBlock DockPanel.Dock="Right" Width="48" TextAlignment="Right"
+                       Text="{Binding ElementName=HorizontalSlider, Path=Value, StringFormat={}{0:0}%}"/>
+            <Slider x:Name="HorizontalSlider" Minimum="0" Maximum="100" TickFrequency="1"
+                    IsSnapToTickEnabled="True" SmallChange="1" LargeChange="10"
+                    AutomationProperties.Name="Horizontal position"/>
+        </DockPanel>
+        <TextBlock Text="Vertical: 0% top, 100% bottom"/>
+        <DockPanel Margin="0,6,0,16">
+            <TextBlock DockPanel.Dock="Right" Width="48" TextAlignment="Right"
+                       Text="{Binding ElementName=VerticalSlider, Path=Value, StringFormat={}{0:0}%}"/>
+            <Slider x:Name="VerticalSlider" Minimum="0" Maximum="100" TickFrequency="1"
+                    IsSnapToTickEnabled="True" SmallChange="1" LargeChange="10"
+                    AutomationProperties.Name="Vertical position"/>
+        </DockPanel>
+        <TextBlock Text="Background transparency: 0% opaque, 100% transparent" TextWrapping="Wrap"/>
+        <DockPanel Margin="0,6,0,16">
+            <TextBlock DockPanel.Dock="Right" Width="48" TextAlignment="Right"
+                       Text="{Binding ElementName=TransparencySlider, Path=Value, StringFormat={}{0:0}%}"/>
+            <Slider x:Name="TransparencySlider" Minimum="0" Maximum="100" TickFrequency="1"
+                    IsSnapToTickEnabled="True" SmallChange="1" LargeChange="10"
+                    AutomationProperties.Name="Background transparency"/>
+        </DockPanel>
+        <TextBlock Text="Test previews these settings on all monitors. Click Save to apply."
+                   TextWrapping="Wrap" Foreground="#555555" Margin="0,0,0,18"/>
+        <WrapPanel HorizontalAlignment="Right">
+            <Button Content="Test notification" Click="OnTestClick" Padding="12,7" Margin="0,0,8,8"/>
+            <Button Content="Save" Click="OnSaveClick" IsDefault="True" Padding="12,7" Margin="0,0,8,8"/>
+            <Button Content="Close" Click="OnCloseClick" IsCancel="True" Padding="12,7" Margin="0,0,0,8"/>
+        </WrapPanel>
+    </StackPanel>
+</Window>

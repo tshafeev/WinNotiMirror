@@ -1,0 +1,23 @@
+# Build outputs and IDE files
+**/bin/
+**/obj/
+.vs/
+*.user
+*.suo
+
+# Local signing material and generated packages
+*.pfx
+*.p12
+*.cer
+*.msix
+*.appx
+packaging/payload/
+
+# Local working notes and temporary tools
+tmp/
+todo.md
+
+# Local secrets
+.env
+.env.*
+!.env.example
